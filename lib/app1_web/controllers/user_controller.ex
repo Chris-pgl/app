@@ -16,10 +16,10 @@ defmodule App1Web.UserController do
 
   def create(conn, %{"user" => user_params}) do
     case Admin.create_user(user_params) do
-      {:ok, user} ->
+      {:ok, _user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: ~p"/users/#{user}")
+        |> redirect(to: ~p"/users")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :new, changeset: changeset)

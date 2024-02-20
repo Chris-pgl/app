@@ -5,7 +5,7 @@ defmodule App1.Admin.Country do
   schema "countries" do
     field :name, :string
 
-    has_many :users, App1.Admin.Users
+    has_many :users, App1.Admin.User
 
     timestamps(type: :utc_datetime)
   end

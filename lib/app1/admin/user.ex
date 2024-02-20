@@ -17,6 +17,6 @@ defmodule App1.Admin.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:name, :address, :phone, :email, :country_id])
-    |> validate_required([:name, :address, :phone, :email])
+    |> validate_required([:name, :address, :phone, :email, :country_id])
   end
 end

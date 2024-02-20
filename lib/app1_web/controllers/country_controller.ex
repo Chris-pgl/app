@@ -16,10 +16,10 @@ defmodule App1Web.CountryController do
 
   def create(conn, %{"country" => country_params}) do
     case Admin.create_country(country_params) do
-      {:ok, country} ->
+      {:ok, _country} ->
         conn
         |> put_flash(:info, "Country created successfully.")
-        |> redirect(to: ~p"/countries/#{country}")
+        |> redirect(to: ~p"/countries")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :new, changeset: changeset)
