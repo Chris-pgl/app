@@ -1,0 +1,15 @@
+<.header>
+  Country <%= @country.id %>
+  <:subtitle>This is a country record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/countries/#{@country}/edit"}>
+      <.button>Edit country</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @country.name %></:item>
+</.list>
+
+<.back navigate={~p"/countries"}>Back to countries</.back>

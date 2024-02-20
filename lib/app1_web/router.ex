@@ -18,6 +18,7 @@ defmodule App1Web.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    resources "/countries", CountryController
   end
 
   # Other scopes may use custom stacks.

@@ -3,7 +3,7 @@ import Config
 # Configure your database
 config :app1, App1.Repo,
   username: "postgres",
-  password: "postgres",
+  password: "cris97",
   hostname: "localhost",
   database: "app1_dev",
   stacktrace: true,
