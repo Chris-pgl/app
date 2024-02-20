@@ -17,4 +17,21 @@ defmodule App1.AdminFixtures do
 
     country
   end
+
+  @doc """
+  Generate a user.
+  """
+  def user_fixture(attrs \\ %{}) do
+    {:ok, user} =
+      attrs
+      |> Enum.into(%{
+        address: "some address",
+        email: "some email",
+        name: "some name",
+        phone: "some phone"
+      })
+      |> App1.Admin.create_user()
+
+    user
+  end
 end

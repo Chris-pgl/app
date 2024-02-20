@@ -5,6 +5,8 @@ defmodule App1.Admin.Country do
   schema "countries" do
     field :name, :string
 
+    has_many :users, App1.Admin.Users
+
     timestamps(type: :utc_datetime)
   end
 
@@ -13,5 +15,6 @@ defmodule App1.Admin.Country do
     country
     |> cast(attrs, [:name])
     |> validate_required([:name])
+    |> unique_constraint([:name])
   end
 end

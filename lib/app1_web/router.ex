@@ -19,6 +19,7 @@ defmodule App1Web.Router do
 
     get "/", PageController, :home
     resources "/countries", CountryController
+    resources "/users", UserController
   end
 
   # Other scopes may use custom stacks.
