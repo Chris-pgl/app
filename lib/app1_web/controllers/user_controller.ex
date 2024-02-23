@@ -11,15 +11,16 @@ defmodule App1Web.UserController do
 
   def new(conn, _params) do
     changeset = Admin.change_user(%User{})
-    render(conn, :new, changeset: changeset)
+    countries = Admin.list_countries()
+    render(conn, :new, changeset: changeset, countries: countries)
   end
 
   def create(conn, %{"user" => user_params}) do
     case Admin.create_user(user_params) do
-      {:ok, _user} ->
+      {:ok, user} ->
         conn
         |> put_flash(:info, "User created successfully.")
-        |> redirect(to: ~p"/users")
+        |> redirect(to: ~p"/users/#{user}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :new, changeset: changeset)
@@ -33,8 +34,9 @@ defmodule App1Web.UserController do
 
   def edit(conn, %{"id" => id}) do
     user = Admin.get_user!(id)
+    countries = Admin.list_countries()
     changeset = Admin.change_user(user)
-    render(conn, :edit, user: user, changeset: changeset)
+    render(conn, :edit, user: user, changeset: changeset, countries: countries)
   end
 
   def update(conn, %{"id" => id, "user" => user_params}) do

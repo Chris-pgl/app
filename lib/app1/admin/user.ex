@@ -8,15 +8,17 @@ defmodule App1.Admin.User do
     field :phone, :string
     field :email, :string
 
-    belongs_to :country, App1.Admim.Country
+    belongs_to :country, App1.Admin.Country
 
     timestamps(type: :utc_datetime)
   end
 
   @doc false
-  def changeset(user, attrs) do
+  def changeset(user, attrs \\ %{}) do
     user
     |> cast(attrs, [:name, :address, :phone, :email, :country_id])
-    |> validate_required([:name, :address, :phone, :email, :country_id])
+    |> validate_required([:name, :address, :phone, :country_id])
+    # vincolo di chiave esterna
+    |> foreign_key_constraint(:country_id, name: :users_country_id_fkey)
   end
 end

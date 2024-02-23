@@ -22,8 +22,11 @@ defmodule App1.AdminFixtures do
   Generate a user.
   """
   def user_fixture(attrs \\ %{}) do
+    country = country_fixture()
+    attrs_with_country_id = Map.put(attrs, :country_id, country.id)
+
     {:ok, user} =
-      attrs
+      attrs_with_country_id
       |> Enum.into(%{
         address: "some address",
         email: "some email",

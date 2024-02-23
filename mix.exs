@@ -9,7 +9,8 @@ defmodule App1.MixProject do
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      applications: [:logger, :runtime_tools, :App1]
     ]
   end
 
@@ -19,7 +20,7 @@ defmodule App1.MixProject do
   def application do
     [
       mod: {App1.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :ecto, :phoenix]
     ]
   end
 
@@ -50,7 +51,8 @@ defmodule App1.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
-      {:plug_cowboy, "~> 2.5"}
+      {:plug_cowboy, "~> 2.5"},
+      {:mix_test_watch, "~> 1.0"}
     ]
   end
 

@@ -5,13 +5,13 @@ defmodule App1.Admin.Country do
   schema "countries" do
     field :name, :string
 
-    has_many :users, App1.Admin.User
+    has_many :user, App1.Admin.User
 
     timestamps(type: :utc_datetime)
   end
 
   @doc false
-  def changeset(country, attrs) do
+  def changeset(country, attrs \\ %{}) do
     country
     |> cast(attrs, [:name])
     |> validate_required([:name])

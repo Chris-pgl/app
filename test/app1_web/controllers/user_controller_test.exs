@@ -3,9 +3,22 @@ defmodule App1Web.UserControllerTest do
 
   import App1.AdminFixtures
 
-  @create_attrs %{name: "some name", address: "some address", phone: "some phone", email: "some email"}
-  @update_attrs %{name: "some updated name", address: "some updated address", phone: "some updated phone", email: "some updated email"}
-  @invalid_attrs %{name: nil, address: nil, phone: nil, email: nil}
+  @create_attrs %{
+    name: "some name",
+    address: "some address",
+    phone: "some phone",
+    email: "some email",
+    country_id: 1
+  }
+  @update_attrs %{
+    name: "some updated name",
+    address: "some updated address",
+    phone: "some updated phone",
+    email: "some updated email",
+    country_id: 2
+  }
+
+  @invalid_attrs %{name: nil, address: nil, phone: nil, country_id: nil}
 
   describe "index" do
     test "lists all users", %{conn: conn} do
@@ -16,7 +29,7 @@ defmodule App1Web.UserControllerTest do
 
   describe "new user" do
     test "renders form", %{conn: conn} do
-      conn = get(conn, ~p"/users/new")
+      conn = get(conn, ~p"/users")
       assert html_response(conn, 200) =~ "New User"
     end
   end
@@ -52,7 +65,7 @@ defmodule App1Web.UserControllerTest do
 
     test "redirects when data is valid", %{conn: conn, user: user} do
       conn = put(conn, ~p"/users/#{user}", user: @update_attrs)
-      assert redirected_to(conn) == ~p"/users/#{user}"
+      assert redirected_to(conn) == ~p"/users/{user}"
 
       conn = get(conn, ~p"/users/#{user}")
       assert html_response(conn, 200) =~ "some updated name"

@@ -6,7 +6,12 @@
   <.input field={f[:address]} type="text" label="Address" />
   <.input field={f[:phone]} type="text" label="Phone" />
   <.input field={f[:email]} type="text" label="Email" />
-  <.input field={f[:country_id]} type="text" label="Country" />
+  <.input
+    field={f[:country_id]}
+    type="select"
+    label="Choose your country"
+    options={Enum.map(@countries, &{&1.name, &1.id})}
+  />
   <:actions>
     <.button>Save User</.button>
   </:actions>

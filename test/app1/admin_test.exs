@@ -62,7 +62,7 @@ defmodule App1.AdminTest do
 
     import App1.AdminFixtures
 
-    @invalid_attrs %{name: nil, address: nil, phone: nil, email: nil}
+    @invalid_attrs %{name: nil, address: nil, phone: nil, email: nil, country_id: nil}
 
     test "list_users/0 returns all users" do
       user = user_fixture()
@@ -75,13 +75,22 @@ defmodule App1.AdminTest do
     end
 
     test "create_user/1 with valid data creates a user" do
-      valid_attrs = %{name: "some name", address: "some address", phone: "some phone", email: "some email"}
+      country = country_fixture()
+
+      valid_attrs = %{
+        name: "some name",
+        address: "some address",
+        phone: "some phone",
+        email: "some email",
+        country_id: country.id
+      }
 
       assert {:ok, %User{} = user} = Admin.create_user(valid_attrs)
       assert user.name == "some name"
       assert user.address == "some address"
       assert user.phone == "some phone"
       assert user.email == "some email"
+      assert user.country_id == country.id
     end
 
     test "create_user/1 with invalid data returns error changeset" do
@@ -89,14 +98,23 @@ defmodule App1.AdminTest do
     end
 
     test "update_user/2 with valid data updates the user" do
-      user = user_fixture()
-      update_attrs = %{name: "some updated name", address: "some updated address", phone: "some updated phone", email: "some updated email"}
+      country = country_fixture()
+      user = user_fixture(%{country_id: country.id})
+
+      update_attrs = %{
+        name: "some updated name",
+        address: "some updated address",
+        phone: "some updated phone",
+        email: "some updated email",
+        country_id: country.id
+      }
 
       assert {:ok, %User{} = user} = Admin.update_user(user, update_attrs)
       assert user.name == "some updated name"
       assert user.address == "some updated address"
       assert user.phone == "some updated phone"
       assert user.email == "some updated email"
+      assert user.country_id == country.id
     end
 
     test "update_user/2 with invalid data returns error changeset" do
