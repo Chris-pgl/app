@@ -116,6 +116,11 @@ defmodule App1.Admin do
   def list_users do
     User
     |> Repo.all()
+  end
+
+  def list_users_preload do
+    User
+    |> Repo.all()
     |> Repo.preload(:country)
   end
 

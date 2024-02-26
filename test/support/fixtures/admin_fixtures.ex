@@ -37,4 +37,18 @@ defmodule App1.AdminFixtures do
 
     user
   end
+
+  def user_fixture_without_country(attrs) do
+    {:ok, user} =
+      attrs
+      |> Enum.into(%{
+        address: "some address",
+        email: "some email",
+        name: "some name",
+        phone: "some phone"
+      })
+      |> App1.Admin.create_user()
+
+    user
+  end
 end

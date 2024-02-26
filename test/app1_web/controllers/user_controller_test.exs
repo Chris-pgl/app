@@ -8,17 +8,19 @@ defmodule App1Web.UserControllerTest do
     address: "some address",
     phone: "some phone",
     email: "some email",
-    country_id: 1
+    country_id: 1,
+    countries: "some countries"
   }
   @update_attrs %{
     name: "some updated name",
     address: "some updated address",
     phone: "some updated phone",
     email: "some updated email",
-    country_id: 2
+    country_id: 2,
+    countries: "some updated countries"
   }
 
-  @invalid_attrs %{name: nil, address: nil, phone: nil, country_id: nil}
+  @invalid_attrs %{name: nil, address: nil, phone: nil, country_id: nil, countries: nil}
 
   describe "index" do
     test "lists all users", %{conn: conn} do
