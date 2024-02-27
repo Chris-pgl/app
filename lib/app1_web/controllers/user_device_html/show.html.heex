@@ -1,0 +1,15 @@
+<.header>
+  User device <%= @user_device.id %>
+  <:subtitle>This is a user_device record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/user_devices/#{@user_device}/edit"}>
+      <.button>Edit user_device</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @user_device.name %></:item>
+</.list>
+
+<.back navigate={~p"/user_devices"}>Back to user_devices</.back>

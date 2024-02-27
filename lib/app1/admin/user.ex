@@ -9,6 +9,7 @@ defmodule App1.Admin.User do
     field :email, :string
 
     belongs_to :country, App1.Admin.Country
+    has_many :user_devices, App1.Device.UserDevice
 
     timestamps(type: :utc_datetime)
   end
