@@ -14,7 +14,7 @@ defmodule App1Web.UserHTML do
 
   def pippo_html(assigns) do
     ~H"""
-    <h1>pippo</h1>
+    <h1>pippo html</h1>
     """
   end
 end
