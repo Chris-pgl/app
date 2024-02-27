@@ -23,7 +23,8 @@ defmodule App1Web.UserController do
         |> redirect(to: ~p"/users/#{user}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :new, changeset: changeset)
+        countries = Admin.list_countries()
+        render(conn, :new, changeset: changeset, countries: countries)
     end
   end
 
@@ -49,7 +50,8 @@ defmodule App1Web.UserController do
         |> redirect(to: ~p"/users/#{user}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :edit, user: user, changeset: changeset)
+        countries = Admin.list_countries()
+        render(conn, :edit, user: user, changeset: changeset, countries: countries)
     end
   end
 
