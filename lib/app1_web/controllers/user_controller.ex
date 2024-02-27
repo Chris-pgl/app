@@ -5,7 +5,7 @@ defmodule App1Web.UserController do
   alias App1.Admin.User
 
   def index(conn, _params) do
-    users = Admin.list_users_preload()
+    users = Admin.list_users()
     render(conn, :index, users: users)
   end
 

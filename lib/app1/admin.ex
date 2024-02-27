@@ -116,11 +116,6 @@ defmodule App1.Admin do
   def list_users do
     User
     |> Repo.all()
-  end
-
-  def list_users_preload do
-    User
-    |> Repo.all()
     |> Repo.preload(:country)
   end
 
@@ -138,7 +133,7 @@ defmodule App1.Admin do
       ** (Ecto.NoResultsError)
   
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user!(id), do: Repo.get!(User, id) |> Repo.preload(:country)
 
   @doc """
   Creates a user.

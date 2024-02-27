@@ -19,7 +19,7 @@
   <:col :let={user} label="Country"><%= user.country.name %></:col>
   
   <:action :let={user}>
-    <div class="sr-only">
+    <div class="z">
       <.link navigate={~p"/users/#{user}"}>Show</.link>
     </div>
      <.link navigate={~p"/users/#{user}/edit"}>Edit</.link>

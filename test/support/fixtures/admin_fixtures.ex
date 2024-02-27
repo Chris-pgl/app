@@ -1,4 +1,6 @@
 defmodule App1.AdminFixtures do
+  alias App1.Repo
+
   @moduledoc """
   This module defines test helpers for creating
   entities via the `App1.Admin` context.
@@ -36,19 +38,6 @@ defmodule App1.AdminFixtures do
       |> App1.Admin.create_user()
 
     user
-  end
-
-  def user_fixture_without_country(attrs) do
-    {:ok, user} =
-      attrs
-      |> Enum.into(%{
-        address: "some address",
-        email: "some email",
-        name: "some name",
-        phone: "some phone"
-      })
-      |> App1.Admin.create_user()
-
-    user
+    |> Repo.preload(:country)
   end
 end
