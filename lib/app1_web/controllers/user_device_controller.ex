@@ -1,6 +1,7 @@
 defmodule App1Web.UserDeviceController do
   use App1Web, :controller
 
+  alias App1.Admin
   alias App1.Device
   alias App1.Device.UserDevice
 
@@ -9,8 +10,8 @@ defmodule App1Web.UserDeviceController do
     render(conn, :index, user_devices: user_devices)
   end
 
-  def new(conn, _params) do
-    changeset = Device.change_user_device(%UserDevice{})
+  def new(conn, %{"user_id" => user_id}) do
+    changeset = Device.change_user_device(%UserDevice{user_id: user_id})
     render(conn, :new, changeset: changeset)
   end
 
@@ -19,7 +20,7 @@ defmodule App1Web.UserDeviceController do
       {:ok, user_device} ->
         conn
         |> put_flash(:info, "User device created successfully.")
-        |> redirect(to: ~p"/user_devices/#{user_device}")
+        |> redirect(to: ~p"/users/#{user_device.user_id}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, :new, changeset: changeset)
@@ -34,7 +35,8 @@ defmodule App1Web.UserDeviceController do
   def edit(conn, %{"id" => id}) do
     user_device = Device.get_user_device!(id)
     changeset = Device.change_user_device(user_device)
-    render(conn, :edit, user_device: user_device, changeset: changeset)
+    users = Admin.list_users()
+    render(conn, :edit, user_device: user_device, changeset: changeset, users: users)
   end
 
   def update(conn, %{"id" => id, "user_device" => user_device_params}) do
@@ -47,7 +49,8 @@ defmodule App1Web.UserDeviceController do
         |> redirect(to: ~p"/user_devices/#{user_device}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :edit, user_device: user_device, changeset: changeset)
+        users = Admin.list_users()
+        render(conn, :edit, user_device: user_device, changeset: changeset, users: users)
     end
   end
 
@@ -57,6 +60,6 @@ defmodule App1Web.UserDeviceController do
 
     conn
     |> put_flash(:info, "User device deleted successfully.")
-    |> redirect(to: ~p"/user_devices")
+    |> redirect(to: ~p"/users/#{user_device.user_id}")
   end
 end

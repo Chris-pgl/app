@@ -7,6 +7,7 @@ defmodule App1.DeviceTest do
     alias App1.Device.UserDevice
 
     import App1.DeviceFixtures
+    import App1.AdminFixtures
 
     @invalid_attrs %{name: nil}
 
@@ -21,10 +22,12 @@ defmodule App1.DeviceTest do
     end
 
     test "create_user_device/1 with valid data creates a user_device" do
-      valid_attrs = %{name: "some name"}
+      user = user_fixture()
+      valid_attrs = %{user_id: user.id, name: "some name"}
 
       assert {:ok, %UserDevice{} = user_device} = Device.create_user_device(valid_attrs)
       assert user_device.name == "some name"
+
     end
 
     test "create_user_device/1 with invalid data returns error changeset" do

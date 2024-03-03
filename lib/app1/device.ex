@@ -4,7 +4,10 @@ defmodule App1.Device do
   """
 
   import Ecto.Query, warn: false
+
   alias App1.Repo
+
+
 
   alias App1.Device.UserDevice
 
@@ -101,4 +104,10 @@ defmodule App1.Device do
   def change_user_device(%UserDevice{} = user_device, attrs \\ %{}) do
     UserDevice.changeset(user_device, attrs)
   end
+
+  # def create_user_device(user_id, attrs \\ %{}) do
+  #   %UserDevice{}
+  #   |> UserDevice.changeset(Map.put(attrs, :user_id, user_id))
+  #   |> Repo.insert()
+  # end
 end

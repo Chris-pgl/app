@@ -4,6 +4,8 @@ defmodule App1Web.UserController do
   alias App1.Admin
   alias App1.Admin.User
 
+
+
   def index(conn, _params) do
     users = Admin.list_users()
     render(conn, :index, users: users)
@@ -24,12 +26,13 @@ defmodule App1Web.UserController do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         countries = Admin.list_countries()
+
         render(conn, :new, changeset: changeset, countries: countries)
     end
   end
 
   def show(conn, %{"id" => id}) do
-    user = Admin.get_user!(id)
+    user = Admin.show_user(id)
     render(conn, :show, user: user)
   end
 
@@ -51,6 +54,7 @@ defmodule App1Web.UserController do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         countries = Admin.list_countries()
+
         render(conn, :edit, user: user, changeset: changeset, countries: countries)
     end
   end

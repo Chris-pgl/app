@@ -3,6 +3,6 @@
   <:subtitle>Use this form to manage user_device records in your database.</:subtitle>
 </.header>
 
-<.user_device_form changeset={@changeset} action={~p"/user_devices/#{@user_device}"} />
+<.user_device_form changeset={@changeset} users={@users} action={~p"/user_devices/#{@user_device}"} />
 
 <.back navigate={~p"/user_devices"}>Back to user_devices</.back>

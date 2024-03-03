@@ -2,6 +2,7 @@ defmodule App1.AdminTest do
   use App1.DataCase
 
   alias App1.Admin
+  # import App1.DeviceFixtures
 
   describe "countries" do
     alias App1.Admin.Country
@@ -99,6 +100,7 @@ defmodule App1.AdminTest do
 
     test "update_user/2 with valid data updates the user" do
       country = country_fixture()
+
       user = user_fixture(%{country_id: country.id})
 
       update_attrs = %{

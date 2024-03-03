@@ -17,8 +17,11 @@
   <:col :let={user} label="Email"><%= user.email %></:col>
   
   <:col :let={user} label="Country"><%= user.country.name %></:col>
-  
-  <:action :let={user}>
+
+
+
+
+   <:action :let={user}>
     <div class="z">
       <.link navigate={~p"/users/#{user}"}>Show</.link>
     </div>
