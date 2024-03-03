@@ -4,7 +4,7 @@ defmodule App1Web.UserDeviceControllerTest do
   import App1.DeviceFixtures
 
   @create_attrs %{ user_id: 1, name: "some name"}
-  @update_attrs %{ user_id: 2, name: "some updated name"}
+
   @invalid_attrs %{user_id: nil, name: nil}
 
 

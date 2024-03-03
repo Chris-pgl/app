@@ -8,7 +8,7 @@ defmodule App1Web.UserDeviceHTML do
   """
   attr :changeset, Ecto.Changeset, required: true
   attr :action, :string, required: true
-  attr :users, :string, required: true
+
 
   def user_device_form(assigns)
 end

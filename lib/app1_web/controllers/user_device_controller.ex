@@ -1,7 +1,6 @@
 defmodule App1Web.UserDeviceController do
   use App1Web, :controller
 
-  alias App1.Admin
   alias App1.Device
   alias App1.Device.UserDevice
 
