@@ -1,7 +1,6 @@
 defmodule App1.AdminFixtures do
   alias App1.Repo
 
-
   @moduledoc """
   This module defines test helpers for creating
   entities via the `App1.Admin` context.
@@ -42,6 +41,4 @@ defmodule App1.AdminFixtures do
     user
     |> Repo.preload(:country)
   end
-
-
 end

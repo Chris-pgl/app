@@ -8,7 +8,6 @@ defmodule App1.Admin do
 
   alias App1.Admin.Country
 
-
   @doc """
   Returns the list of countries.
 
@@ -118,6 +117,7 @@ defmodule App1.Admin do
     User
     |> Repo.all()
     |> Repo.preload(:country)
+
     # |> Repo.preload(:user_device)
   end
 
@@ -136,7 +136,6 @@ defmodule App1.Admin do
 
   """
   def get_user!(id), do: Repo.get!(User, id) |> Repo.preload(:country)
-
 
   def show_user(id), do: get_user!(id) |> Repo.preload(:user_devices)
 

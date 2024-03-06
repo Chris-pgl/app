@@ -13,22 +13,21 @@
   <:item title="Address"><%= @user.address %></:item>
   <:item title="Phone"><%= @user.phone %></:item>
   <:item title="Email"><%= @user.email %></:item>
-  
-  <:item title="Country"><%= @user.country.name %></:item>
-  <:item title="Devices"> 
 
-     <.link href={~p"/user_devices/new?user_id=#{@user.id}"}>
-      <.button> Add Devices </.button>
+  <:item title="Country"><%= @user.country.name %></:item>
+  <:item title="Devices">
+    <.link href={~p"/user_devices/new?user_id=#{@user.id}"}>
+      <.button>Add Devices</.button>
     </.link>
-  <ul> <%= for device <- @user.user_devices do %>
-    <li><%= device.name %></li>
-    <.link href={~p"/user_devices/#{device.id}"} method="delete" data-confirm="Are you sure?">
-      Delete
-    </.link>
-    <% end %>
-  </ul>
-  </:item> 
-  
+    <ul>
+      <%= for device <- @user.user_devices do %>
+        <li><%= device.name %></li>
+        <.link href={~p"/user_devices/#{device.id}"} method="delete" data-confirm="Are you sure?">
+          Delete
+        </.link>
+      <% end %>
+    </ul>
+  </:item>
 </.list>
 
 <.back navigate={~p"/users"}>Back to users</.back>

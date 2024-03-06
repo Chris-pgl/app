@@ -23,10 +23,12 @@ defmodule App1Web.CountryControllerTest do
 
   describe "create country" do
     test "redirects to show when data is valid", %{conn: conn} do
+      country = @create_attrs
       conn = post(conn, ~p"/countries", country: @create_attrs)
 
       assert %{} = redirected_params(conn)
       assert redirected_to(conn) == ~p"/countries"
+      assert country == @create_attrs
     end
 
     test "renders errors when data is invalid", %{conn: conn} do

@@ -7,8 +7,6 @@ defmodule App1.Device do
 
   alias App1.Repo
 
-
-
   alias App1.Device.UserDevice
 
   @doc """

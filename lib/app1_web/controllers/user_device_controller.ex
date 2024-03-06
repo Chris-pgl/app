@@ -4,8 +4,6 @@ defmodule App1Web.UserDeviceController do
   alias App1.Device
   alias App1.Device.UserDevice
 
-
-
   def new(conn, %{"user_id" => user_id}) do
     changeset = Device.change_user_device(%UserDevice{user_id: user_id})
     render(conn, :new, changeset: changeset)
@@ -22,9 +20,6 @@ defmodule App1Web.UserDeviceController do
         render(conn, :new, changeset: changeset)
     end
   end
-
-
-
 
   def delete(conn, %{"id" => id}) do
     user_device = Device.get_user_device!(id)

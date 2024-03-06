@@ -27,7 +27,6 @@ defmodule App1.DeviceTest do
 
       assert {:ok, %UserDevice{} = user_device} = Device.create_user_device(valid_attrs)
       assert user_device.name == "some name"
-
     end
 
     test "create_user_device/1 with invalid data returns error changeset" do
@@ -38,7 +37,9 @@ defmodule App1.DeviceTest do
       user_device = user_device_fixture()
       update_attrs = %{name: "some updated name"}
 
-      assert {:ok, %UserDevice{} = user_device} = Device.update_user_device(user_device, update_attrs)
+      assert {:ok, %UserDevice{} = user_device} =
+               Device.update_user_device(user_device, update_attrs)
+
       assert user_device.name == "some updated name"
     end
 

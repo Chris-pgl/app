@@ -1,16 +1,9 @@
 defmodule App1Web.UserControllerTest do
+  alias App1.AdminFixtures
   use App1Web.ConnCase
 
   import App1.AdminFixtures
 
-  @create_attrs %{
-    name: "some name",
-    address: "some address",
-    phone: "some phone",
-    email: "some email",
-    country_id: 1,
-    countries: "some countries"
-  }
   @update_attrs %{
     name: "some updated name",
     address: "some updated address",
@@ -20,7 +13,13 @@ defmodule App1Web.UserControllerTest do
     countries: "some updated countries"
   }
 
-  @invalid_attrs %{name: nil, address: nil, phone: nil, country_id: nil, countries: nil}
+  @invalid_attrs %{
+    "address" => nil,
+    "countries" => nil,
+    "country_id" => nil,
+    "name" => nil,
+    "phone" => nil
+  }
 
   describe "index" do
     test "lists all users", %{conn: conn} do
@@ -38,13 +37,27 @@ defmodule App1Web.UserControllerTest do
 
   describe "create user" do
     test "redirects to show when data is valid", %{conn: conn} do
-      conn = post(conn, ~p"/users", user: @create_attrs)
-      assert html_response(conn, 200)
+      country = AdminFixtures.country_fixture()
+
+      create_attrs = %{
+        name: "some name",
+        address: "some address",
+        phone: "some phone",
+        email: "some email",
+        country_id: country.id,
+        countries: "some countries"
+      }
+
+      conn = post(conn, ~p"/users", user: create_attrs)
+
+      assert %{id: id} = redirected_params(conn)
+      assert redirected_to(conn) == ~p"/users/#{id}"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
       conn = post(conn, ~p"/users", user: @invalid_attrs)
       assert html_response(conn, 200) =~ "New User"
+      assert Map.get(conn.params, "user") == @invalid_attrs
     end
   end
 
