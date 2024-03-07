@@ -1,0 +1,8 @@
+<.header>
+  New Pet
+  <:subtitle>Use this form to manage pet records in your database.</:subtitle>
+</.header>
+
+<.pet_form changeset={@changeset} action={~p"/pets"} />
+
+<.back navigate={~p"/pets"}>Back to pets</.back>

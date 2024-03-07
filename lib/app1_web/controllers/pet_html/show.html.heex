@@ -1,0 +1,15 @@
+<.header>
+  Pet <%= @pet.id %>
+  <:subtitle>This is a pet record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/pets/#{@pet}/edit"}>
+      <.button>Edit pet</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name"><%= @pet.name %></:item>
+</.list>
+
+<.back navigate={~p"/pets"}>Back to pets</.back>

@@ -1,0 +1,8 @@
+<.header>
+  Edit Pet <%= @pet.id %>
+  <:subtitle>Use this form to manage pet records in your database.</:subtitle>
+</.header>
+
+<.pet_form changeset={@changeset} action={~p"/pets/#{@pet}"} />
+
+<.back navigate={~p"/pets"}>Back to pets</.back>
