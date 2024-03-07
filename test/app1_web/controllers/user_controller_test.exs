@@ -4,15 +4,6 @@ defmodule App1Web.UserControllerTest do
 
   import App1.AdminFixtures
 
-  @update_attrs %{
-    name: "some updated name",
-    address: "some updated address",
-    phone: "some updated phone",
-    email: "some updated email",
-    country_id: 2,
-    countries: "some updated countries"
-  }
-
   @invalid_attrs %{
     "address" => nil,
     "countries" => nil,
@@ -38,7 +29,6 @@ defmodule App1Web.UserControllerTest do
   describe "create user" do
     test "redirects to show when data is valid", %{conn: conn} do
       country = AdminFixtures.country_fixture()
-
       create_attrs = %{
         name: "some name",
         address: "some address",
@@ -47,11 +37,10 @@ defmodule App1Web.UserControllerTest do
         country_id: country.id,
         countries: "some countries"
       }
-
       conn = post(conn, ~p"/users", user: create_attrs)
-
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == ~p"/users/#{id}"
+
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -74,8 +63,19 @@ defmodule App1Web.UserControllerTest do
     setup [:create_user]
 
     test "redirects when data is valid", %{conn: conn, user: user} do
-      conn = put(conn, ~p"/users/#{user}", user: @update_attrs)
+      country = AdminFixtures.country_fixture()
+      update_attrs = %{
+        name: "some updated name",
+        address: "some updated address",
+        phone: "some updated phone",
+        email: "some updated email",
+        country_id: country.id,
+        countries: "some updated countries"
+      }
+      conn = put(conn, ~p"/users/#{user}", user: update_attrs)
+      assert redirected_to(conn) == ~p"/users/#{user}"
 
+      conn = get(conn, ~p"/users/#{user}")
       assert html_response(conn, 200) =~ "some updated name"
     end
 

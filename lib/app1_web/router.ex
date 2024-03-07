@@ -21,6 +21,7 @@ defmodule App1Web.Router do
     resources "/countries", CountryController
     resources "/users", UserController
     resources "/user_devices", UserDeviceController
+    resources "/species", SpeciesController
   end
 
   # Other scopes may use custom stacks.
