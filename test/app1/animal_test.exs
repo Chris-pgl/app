@@ -1,4 +1,5 @@
 defmodule App1.AnimalTest do
+  alias App1.SpecieFixtures
   use App1.DataCase
 
   alias App1.Animal
@@ -6,7 +7,9 @@ defmodule App1.AnimalTest do
   describe "pets" do
     alias App1.Animal.Pet
 
+    import App1.AdminFixtures
     import App1.AnimalFixtures
+    import SpecieFixtures
 
     @invalid_attrs %{name: nil}
 
@@ -21,7 +24,12 @@ defmodule App1.AnimalTest do
     end
 
     test "create_pet/1 with valid data creates a pet" do
-      valid_attrs = %{name: "some name"}
+      user = user_fixture()
+      species = species_fixture()
+      valid_attrs =
+        %{user_id: user.id,
+        species_id: species.id,
+        name: "some name"}
 
       assert {:ok, %Pet{} = pet} = Animal.create_pet(valid_attrs)
       assert pet.name == "some name"

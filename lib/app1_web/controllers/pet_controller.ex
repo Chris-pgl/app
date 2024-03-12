@@ -1,6 +1,7 @@
 defmodule App1Web.PetController do
   use App1Web, :controller
 
+  alias App1.Specie
   alias App1.Animal
   alias App1.Animal.Pet
 
@@ -9,9 +10,10 @@ defmodule App1Web.PetController do
     render(conn, :index, pets: pets)
   end
 
-  def new(conn, _params) do
-    changeset = Animal.change_pet(%Pet{})
-    render(conn, :new, changeset: changeset)
+  def new(conn, %{"user_id" => user_id}) do
+    changeset = Animal.change_pet(%Pet{user_id: user_id})
+    species = Specie.list_species()
+    render(conn, :new, changeset: changeset, species: species)
   end
 
   def create(conn, %{"pet" => pet_params}) do
@@ -19,22 +21,26 @@ defmodule App1Web.PetController do
       {:ok, pet} ->
         conn
         |> put_flash(:info, "Pet created successfully.")
-        |> redirect(to: ~p"/pets/#{pet}")
+        |> redirect(to: ~p"/users/#{pet.user_id}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :new, changeset: changeset)
+        species = Specie.list_species()
+
+        render(conn, :new, changeset: changeset, species: species)
     end
   end
 
   def show(conn, %{"id" => id}) do
-    pet = Animal.get_pet!(id)
+    pet = Animal.show_pet(id)
     render(conn, :show, pet: pet)
   end
 
   def edit(conn, %{"id" => id}) do
     pet = Animal.get_pet!(id)
+    species = Specie.list_species()
     changeset = Animal.change_pet(pet)
-    render(conn, :edit, pet: pet, changeset: changeset)
+
+    render(conn, :edit, pet: pet, changeset: changeset, species: species)
   end
 
   def update(conn, %{"id" => id, "pet" => pet_params}) do
@@ -47,7 +53,8 @@ defmodule App1Web.PetController do
         |> redirect(to: ~p"/pets/#{pet}")
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, :edit, pet: pet, changeset: changeset)
+        species = Specie.list_species()
+        render(conn, :edit, pet: pet, changeset: changeset, species: species)
     end
   end
 
@@ -57,6 +64,6 @@ defmodule App1Web.PetController do
 
     conn
     |> put_flash(:info, "Pet deleted successfully.")
-    |> redirect(to: ~p"/pets")
+    |> redirect(to: ~p"/users/#{pet.user_id}")
   end
 end

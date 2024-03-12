@@ -28,6 +28,19 @@
       <% end %>
     </ul>
   </:item>
+   <:item title="Pets">
+    <.link href={~p"/pets/new?user_id=#{@user.id}"}>
+      <.button>Add Pets</.button>
+    </.link>
+    <ul>
+      <%= for pet <- @user.pets do %>
+        <li><%= pet.name %> (<%= pet.species.name %>)</li>
+        <.link href={~p"/pets/#{pet.id}"} method="delete" data-confirm="Are you sure?">
+          Delete
+        </.link>
+      <% end %>
+    </ul>
+  </:item>
 </.list>
 
 <.back navigate={~p"/users"}>Back to users</.back>

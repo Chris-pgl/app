@@ -30,7 +30,7 @@ defmodule App1Web.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Admin.show_user(id)
+    user = Admin.show_pet(id)
     render(conn, :show, user: user)
   end
 

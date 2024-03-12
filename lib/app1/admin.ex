@@ -139,6 +139,11 @@ defmodule App1.Admin do
 
   def show_user(id), do: get_user!(id) |> Repo.preload(:user_devices)
 
+  # add preload per pets
+  def show_pet(id), do:
+    show_user(id)
+    |> Repo.preload([:pets, pets: :species])
+
   @doc """
   Creates a user.
 

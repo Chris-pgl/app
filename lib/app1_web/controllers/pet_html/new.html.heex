@@ -3,6 +3,6 @@
   <:subtitle>Use this form to manage pet records in your database.</:subtitle>
 </.header>
 
-<.pet_form changeset={@changeset} action={~p"/pets"} />
+<.pet_form changeset={@changeset} species={@species}  action={~p"/pets"} />
 
-<.back navigate={~p"/pets"}>Back to pets</.back>
+<.back navigate={~p"/users"}>Back to users</.back>

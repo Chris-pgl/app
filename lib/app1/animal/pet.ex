@@ -4,8 +4,8 @@ defmodule App1.Animal.Pet do
 
   schema "pets" do
     field :name, :string
-    field :species_id, :id
-    field :user_id, :id
+    belongs_to :species, App1.Specie.Species
+    belongs_to :user, App1.Admin.User
 
     timestamps(type: :utc_datetime)
   end
@@ -13,7 +13,8 @@ defmodule App1.Animal.Pet do
   @doc false
   def changeset(pet, attrs) do
     pet
-    |> cast(attrs, [:name])
-    |> validate_required([:name])
+    |> cast(attrs, [:species_id, :user_id, :name])
+    |> validate_required([:species_id, :user_id, :name])
+    |> foreign_key_constraint(:user_id, name: "pets_user_id_fkey")
   end
 end

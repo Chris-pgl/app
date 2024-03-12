@@ -8,6 +8,7 @@ defmodule App1Web.PetHTML do
   """
   attr :changeset, Ecto.Changeset, required: true
   attr :action, :string, required: true
+  attr :species, :string, required: true
 
   def pet_form(assigns)
 end

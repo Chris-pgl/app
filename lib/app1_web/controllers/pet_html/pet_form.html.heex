@@ -2,7 +2,14 @@
   <.error :if={@changeset.action}>
     Oops, something went wrong! Please check the errors below.
   </.error>
-  <.input field={f[:name]} type="text" label="Name" />
+  <.input field={f[:user_id]} type="hidden" />
+  <.input field={f[:name]} type="text" label="Name" /> 
+   <.input
+    field={f[:species_id]}
+    type="select"
+    label="choose the species of your pet"
+    options={Enum.map(@species, &{&1.name, &1.id})}
+  />
   <:actions>
     <.button>Save Pet</.button>
   </:actions>

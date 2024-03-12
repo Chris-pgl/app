@@ -18,8 +18,12 @@ defmodule App1.Animal do
 
   """
   def list_pets do
+    Pet
     Repo.all(Pet)
+    # |> Repo.preload(:species)
   end
+
+
 
   @doc """
   Gets a single pet.
@@ -36,6 +40,9 @@ defmodule App1.Animal do
 
   """
   def get_pet!(id), do: Repo.get!(Pet, id)
+
+
+  def show_pet(id), do: get_pet!(id) |> Repo.preload(:species)
 
   @doc """
   Creates a pet.

@@ -10,6 +10,8 @@ defmodule App1.Admin.User do
 
     belongs_to :country, App1.Admin.Country
     has_many :user_devices, App1.Device.UserDevice
+    has_many :pets, App1.Animal.Pet
+    has_many :species, App1.Specie.Species
 
     timestamps(type: :utc_datetime)
   end
