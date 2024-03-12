@@ -26,10 +26,9 @@ defmodule App1.AnimalTest do
     test "create_pet/1 with valid data creates a pet" do
       user = user_fixture()
       species = species_fixture()
+
       valid_attrs =
-        %{user_id: user.id,
-        species_id: species.id,
-        name: "some name"}
+        %{user_id: user.id, species_id: species.id, name: "some name"}
 
       assert {:ok, %Pet{} = pet} = Animal.create_pet(valid_attrs)
       assert pet.name == "some name"

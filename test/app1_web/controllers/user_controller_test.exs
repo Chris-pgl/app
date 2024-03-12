@@ -29,6 +29,7 @@ defmodule App1Web.UserControllerTest do
   describe "create user" do
     test "redirects to show when data is valid", %{conn: conn} do
       country = AdminFixtures.country_fixture()
+
       create_attrs = %{
         name: "some name",
         address: "some address",
@@ -37,10 +38,10 @@ defmodule App1Web.UserControllerTest do
         country_id: country.id,
         countries: "some countries"
       }
+
       conn = post(conn, ~p"/users", user: create_attrs)
       assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == ~p"/users/#{id}"
-
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -64,6 +65,7 @@ defmodule App1Web.UserControllerTest do
 
     test "redirects when data is valid", %{conn: conn, user: user} do
       country = AdminFixtures.country_fixture()
+
       update_attrs = %{
         name: "some updated name",
         address: "some updated address",
@@ -72,6 +74,7 @@ defmodule App1Web.UserControllerTest do
         country_id: country.id,
         countries: "some updated countries"
       }
+
       conn = put(conn, ~p"/users/#{user}", user: update_attrs)
       assert redirected_to(conn) == ~p"/users/#{user}"
 

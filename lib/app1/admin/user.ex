@@ -21,7 +21,6 @@ defmodule App1.Admin.User do
     user
     |> cast(attrs, [:name, :address, :phone, :email, :country_id])
     |> validate_required([:name, :address, :phone, :country_id])
-    # vincolo di chiave esterna
     |> foreign_key_constraint(:country_id, name: :users_country_id_fkey)
   end
 end

@@ -11,8 +11,6 @@ defmodule App1Web.PetControllerTest do
     "species_id" => nil,
     "name" => nil
   }
-  # continuare a sistemare gli attrs,
-  # in base a quello che ho aggiunto user_id e species_id
 
   describe "index" do
     test "lists all pets", %{conn: conn} do
@@ -32,16 +30,12 @@ defmodule App1Web.PetControllerTest do
     test "redirects to show when data is valid", %{conn: conn} do
       species = SpecieFixtures.species_fixture()
       user = AdminFixtures.user_fixture()
+
       create_attrs =
-        %{user_id: user.id,
-        species_id: species.id,
-        name: "some name"}
+        %{user_id: user.id, species_id: species.id, name: "some name"}
 
       conn = post(conn, ~p"/pets", pet: create_attrs)
-      # assert %{id: id} = redirected_params(conn)
       assert redirected_to(conn) == ~p"/users/#{user.id}"
-      # conn = get(conn, ~p"/pets/#{id}")
-      # assert html_response(conn, 200) =~ "Pet #{id}"
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -65,10 +59,9 @@ defmodule App1Web.PetControllerTest do
     test "redirects when data is valid", %{conn: conn, pet: pet} do
       user = AdminFixtures.user_fixture()
       species = SpecieFixtures.species_fixture()
+
       update_attrs =
-        %{user_id: user.id,
-        species_id: species.id,
-        name: "some updated name"}
+        %{user_id: user.id, species_id: species.id, name: "some updated name"}
 
       conn = put(conn, ~p"/pets/#{pet}", pet: update_attrs)
       assert redirected_to(conn) == ~p"/pets/#{pet}"
