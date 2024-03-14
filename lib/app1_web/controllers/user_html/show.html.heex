@@ -41,6 +41,19 @@
       <% end %>
     </ul>
   </:item>
+  <:item title="Cars">
+    <.link href={~p"/cars/new?user_id=#{@user.id}"}>
+      <.button>Add Cars</.button>
+    </.link>
+    <ul>
+      <%= for car <- @user.cars do %>
+        <li><%= car.name %></li>
+        <.link href={~p"/cars/#{car.id}"} method="delete" data-confirm="Are you sure?">
+          Delete
+        </.link>
+      <% end %>
+    </ul>
+  </:item>
 </.list>
 
 <.back navigate={~p"/users"}>Back to users</.back>

@@ -137,7 +137,7 @@ defmodule App1.Admin do
   """
   def get_user!(id), do: Repo.get!(User, id) |> Repo.preload(:country)
 
-  def show_user(id), do: get_user!(id) |> Repo.preload([:user_devices, pets: :species])
+  def show_user(id), do: get_user!(id) |> Repo.preload([:user_devices, :cars, pets: :species])
 
   @doc """
   Creates a user.

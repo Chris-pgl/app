@@ -12,6 +12,7 @@ defmodule App1.Admin.User do
     has_many :user_devices, App1.Device.UserDevice
     has_many :pets, App1.Animal.Pet
     has_many :species, App1.Specie.Species
+    has_many :cars, App1.Auto.Car
 
     timestamps(type: :utc_datetime)
   end
