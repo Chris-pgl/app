@@ -2,8 +2,6 @@ defmodule App1Web.CarControllerTest do
   alias App1.AdminFixtures
   use App1Web.ConnCase
 
-  import App1.AutoFixtures
-
   @invalid_attrs %{"user_id" => nil, "name" => nil}
 
   describe "new car" do

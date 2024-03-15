@@ -69,7 +69,7 @@ defmodule App1.Auto do
 
     ## Examples
     iex> change_car(car)
-    %Ecto.Changeset{data: %Pet{}}
+    %Ecto.Changeset{data: %Car{}}
   """
   def change_car(%Car{} = car, attrs \\ %{}) do
     Car.changeset(car, attrs)

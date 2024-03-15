@@ -14,7 +14,5 @@ defmodule App1.Auto.Car do
     car
     |> cast(attrs, [:user_id, :name])
     |> validate_required([:user_id, :name])
-
-    # |> foreign_key_constraint(:user_id, name: "cars_user_id_fkey")
   end
 end
