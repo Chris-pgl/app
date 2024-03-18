@@ -10,7 +10,14 @@ defmodule App1.MixProject do
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps(),
-      applications: [:logger, :runtime_tools, :App1]
+      applications: [:logger, :runtime_tools, :App1],
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [
+        coveralls: :test,
+        "coveralls.detail": :test,
+        "coveralls.post": :test,
+        "coveralls.html": :test
+      ]
     ]
   end
 
@@ -52,7 +59,8 @@ defmodule App1.MixProject do
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.1.1"},
       {:plug_cowboy, "~> 2.5"},
-      {:mix_test_watch, "~> 1.0"}
+      {:mix_test_watch, "~> 1.0"},
+      {:excoveralls, "~> 0.17.1"}
     ]
   end
 

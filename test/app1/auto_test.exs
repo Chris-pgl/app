@@ -30,6 +30,7 @@ defmodule App1.AutoTest do
 
       assert {:ok, %Car{} = car} = Auto.create_car(valid_attrs)
       assert car.name == "some name"
+      assert car.user_id == user.id
     end
 
     test "create_car/1 with invalid data returns error changeset" do

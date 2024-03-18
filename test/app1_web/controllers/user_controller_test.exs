@@ -21,7 +21,7 @@ defmodule App1Web.UserControllerTest do
 
   describe "new user" do
     test "renders form", %{conn: conn} do
-      conn = get(conn, ~p"/users")
+      conn = get(conn, ~p"/users/new")
       assert html_response(conn, 200) =~ "New User"
     end
   end

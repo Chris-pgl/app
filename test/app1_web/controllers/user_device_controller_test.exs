@@ -8,7 +8,7 @@ defmodule App1Web.UserDeviceControllerTest do
 
   describe "new user_device" do
     test "renders form", %{conn: conn} do
-      conn = get(conn, ~p"/users")
+      conn = get(conn, ~p"/user_devices/new?user_id=5")
       assert html_response(conn, 200)
     end
   end

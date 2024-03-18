@@ -21,7 +21,7 @@ defmodule App1Web.PetControllerTest do
 
   describe "new pet" do
     test "renders form", %{conn: conn} do
-      conn = get(conn, ~p"/users")
+      conn = get(conn, ~p"/pets/new?user_id=5")
       assert html_response(conn, 200)
     end
   end

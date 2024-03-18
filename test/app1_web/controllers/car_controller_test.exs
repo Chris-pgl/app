@@ -1,4 +1,5 @@
 defmodule App1Web.CarControllerTest do
+  alias App1.AutoFixtures
   alias App1.AdminFixtures
   use App1Web.ConnCase
 
@@ -6,7 +7,7 @@ defmodule App1Web.CarControllerTest do
 
   describe "new car" do
     test "render form", %{conn: conn} do
-      conn = get(conn, ~p"/users")
+      conn = get(conn, ~p"/cars/new?user_id=5")
       assert html_response(conn, 200)
     end
   end
@@ -25,6 +26,20 @@ defmodule App1Web.CarControllerTest do
       assert html_response(conn, 200) =~ "New Car"
       assert Map.get(conn.params, "car") == @invalid_attrs
     end
+  end
+
+  describe "delete car" do
+    setup [:create_car]
+
+    test "deletes chosen car", %{conn: conn, car: car} do
+      conn = delete(conn, ~p"/cars/#{car}")
+      assert html_response(conn, 302)
+    end
+  end
+
+  defp create_car(_) do
+    car = AutoFixtures.car_fixture()
+    %{car: car}
   end
 
   defp create_user(_) do
